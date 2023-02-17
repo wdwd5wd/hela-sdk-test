@@ -32,7 +32,7 @@ var DefaultNetworks = Networks{
 						ID: "000000000000000000000000000000000000000000000000e2eaa99fc008f87f",
 						Denominations: map[string]*DenominationInfo{
 							NativeDenominationKey: {
-								Symbol:   "ROSE",
+								Symbol:   "FUCK",
 								Decimals: 18,
 							},
 						},
@@ -98,5 +98,30 @@ var DefaultNetworks = Networks{
 				},
 			},
 		},
+		// // Local net test
+		// "localnet": {
+		// 	ChainContext: "622184b52bc29b41758971437169c86704737a05f73bb58f7a924eeea5df0f17",
+		// 	RPC:          "unix:/serverdir/node/net-runner/network/seed-0/internal.sock",
+		// 	Denomination: DenominationInfo{
+		// 		Symbol:   "HELA",
+		// 		Decimals: 9,
+		// 	},
+		// 	ParaTimes: ParaTimes{
+		// 		Default: "emerald",
+		// 		All: map[string]*ParaTime{
+
+		// 			// Emerald on Testnet.
+		// 			"emerald": {
+		// 				ID: "8000000000000000000000000000000000000000000000000000000000000000",
+		// 				Denominations: map[string]*DenominationInfo{
+		// 					NativeDenominationKey: {
+		// 						Symbol:   "SUSD",
+		// 						Decimals: 18,
+		// 					},
+		// 				},
+		// 			},
+		// 		},
+		// 	},
+		// },
 	},
 }

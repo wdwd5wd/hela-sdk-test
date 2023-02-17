@@ -10,6 +10,10 @@ import (
 // NativeDenominationKey is the key used to signify the native denomination.
 const NativeDenominationKey = "_"
 
+// 我改了
+// CustomDenominationKey is the key used to signify the custom denomination (now is SUSD).
+const CustomDenominationKey = "SUSD"
+
 // ParaTimes contains the configuration of supported paratimes.
 type ParaTimes struct {
 	// Default is the name of the default paratime.

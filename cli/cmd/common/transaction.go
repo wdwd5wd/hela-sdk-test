@@ -155,7 +155,9 @@ func SignParaTimeTransaction(
 	if txGasPrice != "" {
 		// TODO: Support different denominations for gas fees.
 		var err error
-		gasPrice, err = helpers.ParseParaTimeDenomination(npa.ParaTime, txGasPrice, types.NativeDenomination)
+		// 我改了，用SUSD进行结算
+		// gasPrice, err = helpers.ParseParaTimeDenomination(npa.ParaTime, txGasPrice, types.NativeDenomination)
+		gasPrice, err = helpers.ParseParaTimeDenomination(npa.ParaTime, txGasPrice, types.CustomDenomination)
 		if err != nil {
 			return nil, nil, fmt.Errorf("bad gas price: %w", err)
 		}
@@ -179,6 +181,7 @@ func SignParaTimeTransaction(
 		// Gas estimation if not specified.
 		if tx.AuthInfo.Fee.Gas == invalidGasLimit {
 			var err error
+			// 这的问题
 			tx.AuthInfo.Fee.Gas, err = conn.Runtime(npa.ParaTime).Core.EstimateGas(ctx, client.RoundLatest, tx, false)
 			if err != nil {
 				return nil, nil, fmt.Errorf("failed to estimate gas: %w", err)
@@ -193,8 +196,11 @@ func SignParaTimeTransaction(
 			}
 
 			// TODO: Support different denominations for gas fees.
-			denom := types.NativeDenomination
+			// 我改了，用SUSD结算
+			denom := types.CustomDenomination
+			denom1 := types.NativeDenomination
 			*gasPrice = types.NewBaseUnits(mgp[denom], denom)
+			fmt.Println("Native, Custom:", mgp[denom1], denom1, mgp[denom], denom)
 		}
 	}
 
@@ -208,7 +214,10 @@ func SignParaTimeTransaction(
 		return nil, nil, err
 	}
 	tx.AuthInfo.Fee.Amount.Amount = gasPrice.Amount
+	fmt.Println("Gas", tx.AuthInfo.Fee.Gas)
+	fmt.Println("Amount", tx.AuthInfo.Fee.Amount.Amount)
 	tx.AuthInfo.Fee.Amount.Denomination = gasPrice.Denomination
+	fmt.Println("Denomination", tx.AuthInfo.Fee.Amount.Denomination)
 
 	// Handle confidential transactions.
 	var meta interface{}

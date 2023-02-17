@@ -499,7 +499,9 @@ impl<Cfg: Config> Module<Cfg> {
             }
         };
         args.tx.auth_info.fee.amount =
-            token::BaseUnits::new(u64::MAX.into(), token::Denomination::NATIVE);
+        // 我改了，试试
+            // token::BaseUnits::new(u64::MAX.into(), token::Denomination::NATIVE);
+            token::BaseUnits::new(u64::MAX.into(), "SUSD".parse().unwrap());
         args.tx.auth_info.fee.consensus_messages = ctx.remaining_messages();
         // Estimate transaction size. Since the transaction given to us is not signed, we need to
         // estimate how large each of the auth proofs would be.

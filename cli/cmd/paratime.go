@@ -113,6 +113,11 @@ var (
 					Symbol:   answers.Symbol,
 					Decimals: answers.Decimals,
 				},
+				// 我改了，增加SUSD
+				config.CustomDenominationKey: {
+					Symbol:   "SUSD",
+					Decimals: answers.Decimals,
+				},
 			}
 
 			err = net.ParaTimes.Add(name, &pt)

@@ -12,6 +12,10 @@ type Quantity = quantity.Quantity
 // NativeDenomination is the denomination in native token.
 var NativeDenomination = Denomination([]byte{})
 
+// 我改了
+// CustomDenomination is the denomination in native token.
+var CustomDenomination = Denomination("SUSD")
+
 // MaxDenominationSize is the maximum length of a denomination.
 const MaxDenominationSize = 32
 
